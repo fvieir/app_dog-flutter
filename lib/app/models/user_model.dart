@@ -11,6 +11,11 @@ class UserModel {
     required this.imgAvatar,
   });
 
+  UserModel.empty()
+      : email = '',
+        imgAvatar = '',
+        registerType = '';
+
   factory UserModel.fromMap(Map<String, dynamic> map) {
     return UserModel(
       email: map['email'],
