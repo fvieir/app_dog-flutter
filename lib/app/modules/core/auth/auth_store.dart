@@ -6,5 +6,17 @@ class AuthStore = AuthStoreBase with _$AuthStore;
 
 abstract class AuthStoreBase with Store {
   @readonly
-  late UserModel? _userLogged;
+  UserModel? _userLogged;
+
+  @action
+  Future<void> loadUserLogged() async {
+    _userLogged = UserModel.empty();
+
+    Future.delayed(
+      const Duration(seconds: 2),
+      () {
+        _userLogged = UserModel.fromMap({'email': 'fabrcio@gmail.com'});
+      },
+    );
+  }
 }

@@ -3,7 +3,7 @@ import 'dart:convert';
 class UserModel {
   final String email;
   final String registerType;
-  final String imgAvatar;
+  final String? imgAvatar;
 
   UserModel({
     required this.email,
@@ -19,7 +19,7 @@ class UserModel {
   factory UserModel.fromMap(Map<String, dynamic> map) {
     return UserModel(
       email: map['email'],
-      registerType: map['registerType'],
+      registerType: map['registerType'] ?? '',
       imgAvatar: map['imgAvatar'],
     );
   }

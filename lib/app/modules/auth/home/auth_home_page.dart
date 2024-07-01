@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 
 import 'package:cuidapet_mobile/app/core/ui/extensions/size_screen_util.dart';
 import 'package:cuidapet_mobile/app/modules/core/auth/auth_store.dart';
+import 'package:flutter_modular/flutter_modular.dart';
 import 'package:mobx/mobx.dart';
 
 class AuthHomePage extends StatefulWidget {
@@ -25,10 +26,14 @@ class _AuthHomePageState extends State<AuthHomePage> {
 
     reaction((reaction) => widget._authStore.userLogged, (user) {
       if (user != null && user.email.isNotEmpty) {
-        // home page
+        Modular.to.navigate('/home');
       } else {
-        // login
+        Modular.to.navigate('/auth/login');
       }
+    });
+
+    WidgetsBinding.instance.addPostFrameCallback((timeStamp) {
+      widget._authStore.loadUserLogged();
     });
   }
 
